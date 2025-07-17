@@ -1,0 +1,39 @@
+name: DEPLOY ORGANIZATION
+
+on:
+  workflow_dispatch:
+    inputs:
+        realm_name:
+            description: 'Name of realm'
+            required: true
+        organization_name:
+            description: 'Name of organization'
+            required: true
+        alias_name:
+            description: 'Name of alias'
+            required: true
+        domain_name:
+            description: 'Name of domain'
+            required: true
+
+jobs:
+    apply:
+        runs-on: ubuntu-latest
+        steps:
+            - uses: actions/checkout@v4
+
+            - name: setup OpenTofu
+              uses: opentofu/setup-opentofu@v1
+
+            - name: Init
+              run: tofu init
+              working-directory: organization/
+
+            - name: Apply
+              env: 
+                TF_VAR_realm_name: ${{ github.event.inputs.realm_name }}
+                TF_VAR_organization_name: ${{ github.event.inputs.organization_name }}
+                TF_VAR_alias_name: ${{ github.event.inputs.alias_name }}
+                TF_VAR_domain_name: ${{ github.event.inputs.domain_name }}
+              run: tofu apply -auto-approve
+              working-directory: organization/
