@@ -1,4 +1,4 @@
-resource "keycloak_realm" "tenant_a" {
+resource "keycloak_realm" "realm_creator" {
     realm = var.realm
     enabled = true
     organizations_enabled = true

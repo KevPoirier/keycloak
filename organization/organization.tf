@@ -1,4 +1,4 @@
-resource "keycloak_organization" "this" {
+resource "keycloak_organization" "organization_creator" {
   realm = var.realm
   name  = var.organization_name
   alias = var.organization_name

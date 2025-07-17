@@ -11,16 +11,6 @@ variable "admin_password" {
 }
 
 variable "realm" {
-  default = "tenant_a"
+  type = string
   description = "Realm nom du realm"
-}
-
-variable "organization_name" {
-  default = "organization_alala"
-  description = "Nom de l'organisation"
-}
-
-variable "organization_domaine" {
-  default = "alala.com"
-  description = "domaine de l'organisation"
 }
